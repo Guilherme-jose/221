@@ -1,6 +1,7 @@
 from time import sleep
 from a_star import a_star
 from dijkstra import dijkstra
+from guloso import guloso
 
 import matplotlib.pyplot as plt
 
@@ -57,5 +58,5 @@ pathfinder.create_graph()
 
 pathfinder.start_display()
 
-pathfinder.solve(a_star, (0, 0), (9, 9))
+pathfinder.solve(guloso, (0, 0), (9, 9))
 
