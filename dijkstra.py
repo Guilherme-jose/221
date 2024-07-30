@@ -1,28 +1,23 @@
 
-def distance(a, b):
-    return abs(a[0] - b[0]) + abs(a[1] - b[1])
-
-def a_star(graph, start, end): 
-    open_nodes = [start]
+def dijkstra(graph, star, end):
+    open_nodes = [star]
     closed_nodes = []
     came_from = {}
     
     g = {node: float('inf') for node in graph}
-    g[start] = 0
-    f = {node: float('inf') for node in graph}
-    f[start] = distance(start, end)
+    g[star] = 0
     
     while open_nodes:
-        current = min(open_nodes, key = lambda x: f[x])
+        current = min(open_nodes, key = lambda x: g[x])
         
         if current == end:
             path = []
             while current in came_from:
                 path.append(current)
                 current = came_from[current]
-            path.append(start)
+            path.append(star)
             path.reverse()
-        
+            
             return path
         
         open_nodes.remove(current)
@@ -35,13 +30,11 @@ def a_star(graph, start, end):
             if neighbor not in open_nodes:
                 open_nodes.append(neighbor)
             
-            tentative_g = g[current] + distance(current, neighbor)
+            tentative_g = g[current] + 1
             if tentative_g >= g[neighbor]:
                 continue
             
             came_from[neighbor] = current
             g[neighbor] = tentative_g
-            f[neighbor] = g[neighbor] + distance(neighbor, end)
-        
             
     return None
