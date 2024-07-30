@@ -10,20 +10,34 @@ class pathfinder:
     graph = {}
     fig = None
     ax = None
+    size = 10
     
-    def start_display(self):
+    def __init__(self, size):
+        self.size = size
+        
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot(111)
+        
+        for i in range(size):
+            for j in range(size):
+                plt.plot(i, j, 'bo')
+        
+        #plt.ion()
+        #plt.show()
+                
 
     def draw(self, path):
-        for i in range(100):
-            for j in range(100):
+        for i in range(self.size):
+            for j in range(self.size):
                 if (i, j) in path:
                     plt.plot(i, j, 'ro')
                 else:
                     plt.plot(i, j, 'bo')
         
-        plt.show()
+        plt.draw()
+        plt.pause(0.001)
+        plt.show(block=False)
+        
 
     
     def create_graph(self, size = 10):
@@ -49,14 +63,14 @@ class pathfinder:
             
         
     def solve(self, algorithm, start, end):
-        self.draw(algorithm(self.graph, start, end))
+        self.draw(algorithm(self.graph, start, end, self.draw))
         
         
-pathfinder = pathfinder()
+pathfinder = pathfinder(10)
 
 pathfinder.create_graph()
 
-pathfinder.start_display()
 
-pathfinder.solve(guloso, (0, 0), (9, 9))
+pathfinder.solve(dijkstra, (0, 0), (9, 9))
 
+plt.pause(5)

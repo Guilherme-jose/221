@@ -1,5 +1,5 @@
 
-def dijkstra(graph, star, end):
+def dijkstra(graph, star, end, draw):
     open_nodes = [star]
     closed_nodes = []
     came_from = {}
@@ -10,14 +10,18 @@ def dijkstra(graph, star, end):
     while open_nodes:
         current = min(open_nodes, key = lambda x: g[x])
         
-        if current == end:
-            path = []
-            while current in came_from:
-                path.append(current)
-                current = came_from[current]
-            path.append(star)
-            path.reverse()
-            
+        reconstruct = current
+        
+        
+        path = []
+        while reconstruct in came_from:
+            path.append(reconstruct)
+            reconstruct = came_from[reconstruct]
+        path.append(star)
+        path.reverse()
+        draw(path)
+        
+        if current == end: 
             return path
         
         open_nodes.remove(current)

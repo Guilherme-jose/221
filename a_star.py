@@ -1,8 +1,9 @@
+from matplotlib import pyplot as plt
 
 def distance(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-def a_star(graph, start, end): 
+def a_star(graph, start, end, draw): 
     open_nodes = [start]
     closed_nodes = []
     came_from = {}
@@ -15,14 +16,18 @@ def a_star(graph, start, end):
     while open_nodes:
         current = min(open_nodes, key = lambda x: f[x])
         
-        if current == end:
-            path = []
-            while current in came_from:
-                path.append(current)
-                current = came_from[current]
-            path.append(start)
-            path.reverse()
+       
+        path = []
+        reconstruct = current
+        while reconstruct in came_from:
+            path.append(reconstruct)
+            reconstruct = came_from[reconstruct]
+        path.append(start)
+        path.reverse()
         
+        draw(path)
+        
+        if current == end:
             return path
         
         open_nodes.remove(current)
