@@ -1,10 +1,8 @@
-import matplotlib.pyplot as plt
-import a_star
+
+from a_star import a_star
 
 graph = {}
 
-def distance(a, b):
-    return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 for i in range(100):
     for j in range(100):

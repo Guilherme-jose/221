@@ -1,5 +1,8 @@
 from draw import draw
 
+def distance(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
 def a_star(graph, start, end): 
     open_nodes = [start]
     closed_nodes = []
