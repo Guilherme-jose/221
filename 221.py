@@ -1,3 +1,13 @@
+'''
+Grupo:
+
+Guilherme Lopes - 95660
+Otávio Bitencourt - 82655
+Henrique Resende - 105458
+
+'''
+
+
 from time import sleep
 from a_star import a_star
 from dijkstra import dijkstra
