@@ -16,16 +16,15 @@ def a_star(graph, start, end, draw):
     while open_nodes:
         current = min(open_nodes, key = lambda x: f[x])
         
-       
-        path = []
-        reconstruct = current
-        while reconstruct in came_from:
-            path.append(reconstruct)
-            reconstruct = came_from[reconstruct]
-        path.append(start)
-        path.reverse()
-        
-        draw(path)
+        if draw != None or current == end:
+            path = []
+            reconstruct = current
+            while reconstruct in came_from:
+                path.append(reconstruct)
+                reconstruct = came_from[reconstruct]
+            path.append(start)
+            if draw != None:
+                draw(path)
         
         if current == end:
             return path
