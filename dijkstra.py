@@ -1,3 +1,5 @@
+def distance(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 def dijkstra(graph, star, end, draw):
     open_nodes = [star]
@@ -13,13 +15,15 @@ def dijkstra(graph, star, end, draw):
         reconstruct = current
         
         
-        path = []
-        while reconstruct in came_from:
-            path.append(reconstruct)
-            reconstruct = came_from[reconstruct]
-        path.append(star)
-        path.reverse()
-        draw(path)
+        if draw != None or current == end:
+            path = []
+            reconstruct = current
+            while reconstruct in came_from:
+                path.append(reconstruct)
+                reconstruct = came_from[reconstruct]
+            path.append(star)
+            if draw != None:
+                draw(path)
         
         if current == end: 
             return path
@@ -34,7 +38,7 @@ def dijkstra(graph, star, end, draw):
             if neighbor not in open_nodes:
                 open_nodes.append(neighbor)
             
-            tentative_g = g[current] + 1
+            tentative_g = g[current] + distance(current, neighbor)
             if tentative_g >= g[neighbor]:
                 continue
             

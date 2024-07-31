@@ -12,13 +12,15 @@ def guloso(graph, start, end, draw):
         
         reconstruct = current
         
-        path = []
-        while reconstruct in came_from:
-            path.append(reconstruct)
-            reconstruct = came_from[reconstruct]
-        path.append(start)
-        path.reverse()
-        draw(path)
+        if draw != None or current == end:
+            path = []
+            reconstruct = current
+            while reconstruct in came_from:
+                path.append(reconstruct)
+                reconstruct = came_from[reconstruct]
+            path.append(start)
+            if draw != None:
+                draw(path)
         
         if current == end:
             return path

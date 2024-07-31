@@ -87,10 +87,10 @@ pathfinder.add_wall(wall)
 pathfinder.create_graph()
 
 
-
+plt.pause(5)
 
 start_time = time.time()
-pathfinder.solve(a_star, (0, 0), (19, 19))
+pathfinder.solve(dijkstra, (0, 0), (19, 19))
 end_time = time.time()
 
 
