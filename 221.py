@@ -11,9 +11,11 @@ class pathfinder:
     fig = None
     ax = None
     size = 10
+    step = True
     
-    def __init__(self, size):
+    def __init__(self, size, step = True):
         self.size = size
+        self.step = step
         
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot(111)
@@ -21,9 +23,7 @@ class pathfinder:
         for i in range(size):
             for j in range(size):
                 plt.plot(i, j, 'bo')
-        
-        #plt.ion()
-        #plt.show()
+
                 
 
     def draw(self, path):
@@ -63,7 +63,12 @@ class pathfinder:
             
         
     def solve(self, algorithm, start, end):
-        self.draw(algorithm(self.graph, start, end, self.draw))
+        if self.step == True:
+            self.draw(algorithm(self.graph, start, end, self.draw))
+        else:
+            self.draw(algorithm(self.graph, start, end))
+        
+        
         
         
 pathfinder = pathfinder(10)
